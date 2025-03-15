@@ -1,0 +1,7 @@
+bucket = "point-app-tfstate-local"
+key    = "network/terraform.tfstate"
+use_path_style = true
+endpoints = {
+  s3 = "http://localhost:5001"
+  sts= "http://localhost:5001"
+}
