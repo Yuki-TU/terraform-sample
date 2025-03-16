@@ -1,0 +1,2 @@
+bucket = "point-app-tfstate-stg"
+key    = "route53/terraform.tfstate"
