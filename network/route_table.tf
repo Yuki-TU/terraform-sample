@@ -21,6 +21,7 @@ resource "aws_route_table_association" "public" {
 
 # Route Table for Private Subnet
 # プライベートサブネット用のルートテーブルはサブネットごとに作成する
+# NAT GatewayをAZごとに配置するため
 resource "aws_route_table" "private" {
   for_each = var.private_subnet
   vpc_id   = aws_vpc.vpc.id
