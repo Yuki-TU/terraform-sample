@@ -51,14 +51,14 @@ resource "aws_lb_target_group" "api" {
   protocol    = "HTTP"
   vpc_id      = data.terraform_remote_state.network.outputs.vpc.id
   health_check {
-    enabled             = true
-    interval            = 30
-    path                = "/health"
-    port                = "traffic-port"
-    protocol            = "HTTP"
-    timeout             = 5
-    healthy_threshold   = 2
-    unhealthy_threshold = 2
+    enabled             = true           # ヘルスチェックを有効にする
+    port                = "traffic-port" # ターゲットのポート、ここではターゲットグループのポートと同じ
+    protocol            = "HTTP"         # ヘルスチェックのプロトコル
+    path                = "/health"      # アプリケーションのヘルスチェックURL
+    interval            = 30             # 30秒ごとにチェック
+    timeout             = 5              # 5秒以内に応答がないと失敗
+    healthy_threshold   = 2              # 2回連続で成功したらHealthy
+    unhealthy_threshold = 2              # 2回連続で失敗したらUnhealthy
   }
   depends_on = [aws_lb.alb] # albが先に作成されるようにする
   tags       = { Name = "${local.fqn}-api" }
