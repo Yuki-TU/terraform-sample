@@ -1,3 +1,5 @@
+.DEFAULT_GOAL := plan
+
 ENV                  ?= local# stg, prd
 CREDENTIAL_FILE_NAME ?= encrypted_secret
 VAR_FILE              = ./tfvars/${ENV}.tfvars
